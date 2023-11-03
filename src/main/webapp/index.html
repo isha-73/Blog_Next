@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Blog : Register Page</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,600&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="css/index.css">
+</head>
+
 <body>
-
-<h2>User Registration Form</h2>
-
-<form action="User_Registration" method="post">
-  Username:<br>
-  <input type="text" name="username">
-  <br>
-  Password:<br>
-  <input type="password" name="password">
-  <br>
-  Email:<br>
-  <input type="text" name="email">
-  <br><br>
-  <input type="submit" value="Register">
-</form>
-
+	<div class="container">
+		<form action="User_Registration" method="post">
+			<h1>Register Here</h1>
+			<label for="name" class="label">User Name :</label><br> 
+			<input type="text"name="username" autocomplete="off"> <br> 
+			<label for="name" class="label">Password :</label><br> 
+			<input type="password" name="password" autocomplete="off"> <br>
+			<label for="name" class="label">Email :</label><br> 
+			<input type="email" name="email"> <br>
+			<br><button id="submit" type="submit"> Register </button>
+		</form>
+	</div>
 </body>
 </html>
