@@ -10,9 +10,15 @@ public class BlogUtility {
    private int likes;
    private ArrayList<String> comments = new ArrayList<>();
    private int commentCount;
+   private String urlImg;
    
    
-   
+public String getUrlImg() {
+	return urlImg;
+}
+public void setUrlImg(String urlImg) {
+	this.urlImg = urlImg;
+}
 public String getWrittenBy() {
 	return writtenBy;
 }

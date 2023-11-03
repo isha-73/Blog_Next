@@ -21,10 +21,6 @@ public class User_Registration extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 75ce9a1952c450aeef4e55e837b7b720e61e0c1d
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			try {
 				
