@@ -11,9 +11,7 @@ import DBConnect.DBConnection;
 import Module.UserModule;
 import Utility.User;
 
-/**
- * Servlet implementation class User_Registration
- */
+
 public class User_Registration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -24,7 +22,6 @@ public class User_Registration extends HttpServlet {
     }
 
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			try {
 			
