@@ -98,6 +98,9 @@ body{
 
 
 /*BLOG SECTION */
+.blog-card{
+	color: black;
+}
 
 .blogs-section{
     width: 100%;
@@ -116,11 +119,21 @@ body{
 }
 
 .blog-overview{
-    margin: 10px 0 20px;
+    margin: 10px 0 10px;
     line-height: 30px;
 }
 
+.blog-writtenBy{
+	font-size: 13px;
+}
+
+.blog-timestamp{
+	font-size: 13px;
+	margin-bottom:20px;
+}
+
 .btn.dark{
+	margin-top: 10px;
     background: #1b1b1b;
     color: #fff;
 }
