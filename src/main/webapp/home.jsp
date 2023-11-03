@@ -44,16 +44,7 @@
 
 
 	<section class="blogs-section" id="blogContainer">
-	 <div class="blog-card">
-			<img src="img/header_img.jpg" class="blog-image" alt="">
-			<h1 class="blog-title">Lorem ipsum dolor sit amet consectetur.</h1>
-			<p class="blog-overview">Lorem ipsum dolor sit amet consectetur
-				adipisicing elit. Sunt incidunt fugiat quos porro repellat harum.
-				Adipisci tempora corporis rem cum.</p>
-			<p class="blog-writtenBy">Lorem ipsum</p>
-			<p class="blog-timestamp">Lorem ipsum</p>
-			<a href="/" class="btn dark">read</a>
-		</div>
+	
 	</section>
 
 </body>
@@ -67,23 +58,35 @@
                 dataType: 'json',
                 success: function(data) {
                     // Log the received data to the console
-                    console.log(data);
+                    console.log(data.length);
+                    
 
-                    // Attempt to parse the data
                     try {
-                    	var jsonData = data;
+                        var jsonData = data;
                         var blogContainer = document.getElementById("blogContainer");
 
                         for (var i = 0; i < jsonData.length; i++) {
                             var blog = jsonData[i];
+                            console.log(blog);
+
                             var blogElement = document.createElement("div");
-                            //blogElement.innerHTML = "<h3>" + blog['blog-title'] + "</h3><p>" + blog['blog-overview'] + "</p><p>Written By: " + blog['blog-writtenBy'] + "</p><p>Timestamp: " + blog['blog-timeStamp'] + "</p>";
+                            blogElement.classList.add("blog-card"); // Adding the 'blog-card' class to the blog element
+
+                            blogElement.innerHTML =
+                                '<img src="img/header_img.jpg" class="blog-image" alt="">' +
+                                '<h1 class="blog-title">' + blog['title'] + '</h1>' +
+                                '<p class="blog-overview">' + blog['description'] + '</p>' +
+                                '<p class="blog-writtenBy">Written By: ' + blog['writtenBy'] + '</p>' +
+                                '<p class="blog-timestamp">Published on: ' + blog['timestamp'] + '</p>' +
+                                '<a href="/" class="btn dark">read</a>';
 
                             blogContainer.appendChild(blogElement);
                         }
                     } catch (error) {
                         console.log('Error parsing JSON data: ' + error);
                     }
+
+
                 },
                 error: function() {
                     console.log('Failed to retrieve data from the servlet.');
