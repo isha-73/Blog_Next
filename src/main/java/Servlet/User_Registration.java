@@ -23,11 +23,9 @@ public class User_Registration extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			try {
-			
+				
 			String name = request.getParameter("username");
 			String email =  request.getParameter("email");
 			String password = request.getParameter("password");
