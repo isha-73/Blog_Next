@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>All Blogs</title>
 <link rel="stylesheet" href="css/read.css">
 </head>
 <body>

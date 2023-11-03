@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: url(../img/login_img.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%
+}
+
+.label{
+	 font-size: 20px; 
+}
+
+.container input {
+	width: 200px;
+	height: 25px;
+	padding: 5px;
+	border-color: rgba(128, 128, 122, 0.627);
+	border-radius: 3px;
+	background-color: rgba(128, 128, 122, 0.258);
+}
+#submit {
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.409);
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer; 
+  transition: transform 0.2s, background-color 0.2s; 
+  margin-left:50px
+}
+
+#submit:hover {
+  background-color: rgba(0, 0, 0, 0.6); 
+  transform: translateY(-5px); 
+}
+.container input:hover {
+  background-color: rgba(148, 148, 141, 0.627);
+}
