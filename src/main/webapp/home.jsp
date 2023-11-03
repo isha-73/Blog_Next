@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +44,7 @@
 
 
 	<section class="blogs-section" id="blogContainer">
-		<div class="blog-card">
+	 <div class="blog-card">
 			<img src="img/header_img.jpg" class="blog-image" alt="">
 			<h1 class="blog-title">Lorem ipsum dolor sit amet consectetur.</h1>
 			<p class="blog-overview">Lorem ipsum dolor sit amet consectetur
@@ -57,31 +59,40 @@
 </body>
 
 <script>
+    $(document).ready(function() {
         function displayBlogData() {
-            // Assume jsonData is the JSON data returned from the servlet
-            var jsonData = []; // Replace this with your actual JSON data
+            $.ajax({
+                type: 'GET',
+                url: 'AllBlogsServlet',
+                dataType: 'json',
+                success: function(data) {
+                    // Log the received data to the console
+                    console.log(data);
 
-            // Parse the JSON data
-            jsonData = JSON.parse(jsonData);
+                    // Attempt to parse the data
+                    try {
+                    	var jsonData = data;
+                        var blogContainer = document.getElementById("blogContainer");
 
-            // Access the HTML element where you want to display the data
-            var blogContainer = document.getElementById("blogContainer");
+                        for (var i = 0; i < jsonData.length; i++) {
+                            var blog = jsonData[i];
+                            var blogElement = document.createElement("div");
+                            //blogElement.innerHTML = "<h3>" + blog['blog-title'] + "</h3><p>" + blog['blog-overview'] + "</p><p>Written By: " + blog['blog-writtenBy'] + "</p><p>Timestamp: " + blog['blog-timeStamp'] + "</p>";
 
-            // Loop through the JSON data and create HTML elements to display the data
-            for (var i = 0; i < jsonData.length; i++) {
-                var blog = jsonData[i];
-                var blogElement = document.createElement("blog-section");
-                blogElement.innerHTML = "<h3>" + blog.blog-title + "</h3><p>" + blog.blog-overview + "</p><p>Written By: " + blog.blog-writtenBy + "</p><p>Timestamp: " + blog.blog-timeStamp + "</p>";
-
-                // Append the created elements to the container
-                blogContainer.appendChild(blogElement);
-            }
+                            blogContainer.appendChild(blogElement);
+                        }
+                    } catch (error) {
+                        console.log('Error parsing JSON data: ' + error);
+                    }
+                },
+                error: function() {
+                    console.log('Failed to retrieve data from the servlet.');
+                }
+            });
         }
-    </script>
 
-
-
-
-
+        displayBlogData();
+    });
+</script>
 
 </html>
