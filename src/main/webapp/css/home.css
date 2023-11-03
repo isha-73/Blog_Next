@@ -98,6 +98,9 @@ body{
 
 
 /*BLOG SECTION */
+.blog-card{
+	color: black;
+}
 
 .blogs-section{
     width: 100%;

@@ -46,7 +46,7 @@ public class AllBlogsServlet extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             PrintWriter out = response.getWriter();
-            System.out.println(jsonBuilder.toString());
+//            System.out.println(jsonBuilder.toString());
             out.print(jsonBuilder.toString());
             out.flush();
 
