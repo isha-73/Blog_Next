@@ -1,22 +1,14 @@
 package Utility;
 
-public class User {
+public class UserLogin {
 	
-	private String userName ;
 	private String password;
 	private String email;
 	
-	public User(String userName, String password, String email) {
+	public UserLogin(String email, String password) {
 		super();
-		this.userName = userName;
 		this.password = password;
 		this.email = email;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 	public String getPassword() {
 		return password;
