@@ -6,45 +6,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog : </title>
+    <title>Blog: Editor</title>
 
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/editor.css">
-    <link rel="stylesheet" href="css/blog.css">
 
+    <style>
+        .blog form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .blog form .title, .blog form .article {
+            margin-bottom: 10px;
+        }
+
+        .blog form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-
-    <nav class="navbar">
-        <img src="img/logo.png" class="logo" alt="">
-        <ul class="links-container">
-            <li class="link-item"><a href="/" class="link">home</a></li>
-            <li class="link-item"><a href="/editor" class="link">editor</a></li>
-        </ul>
-    </nav>
-    
-    <div class="banner"></div>
-
+<body><%
+    java.util.Date now = new java.util.Date();
+    String timestamp = now.toString();
+%>
+<form action="WriteBlog" method="post">
     <div class="blog">
-        <h1 class="title"></h1>
-        <p class="published"><span>published at - </span></p>
-        <div class="article">
-            
+        <div class="banner">
+            <input type="file" name="bannerFile" accept="image/*" onchange="previewImage(event)">
+            <img id="uploadedImage" src="" alt="Uploaded Banner" style="width: 920px; height: 300px;">
         </div>
+        <textarea type="text" class="title" name="title" placeholder="Blog title..." style="margin-top:10px" required></textarea>
+        <textarea type="text" class="article" name="description" placeholder="Start writing here..." rows="3" cols="50" required></textarea>
+        <input type="hidden" name="timeStamp" value="<%= timestamp %>">
+        <input type="submit" value="Submit blog">
     </div>
+</form>
 
-    <h1 class="sub-heading">Read more</h1>
+ 
 
-    <!-- blog section -->
-    <section class="blogs-section">
-        <!-- <div class="blog-card">
-            <img src="img/header.png" class="blog-image" alt="">
-            <h1 class="blog-title">Lorem ipsum dolor sit amet consectetur.</h1>
-            <p class="blog-overview">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt incidunt fugiat quos porro repellat harum. Adipisci tempora corporis rem cum.</p>
-            <a href="/" class="btn dark">read</a>
-        </div> -->
-    </section>
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('uploadedImage');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 
-    
 </body>
 </html>
