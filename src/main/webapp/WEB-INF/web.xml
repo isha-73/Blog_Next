@@ -29,4 +29,14 @@
     <servlet-name>AllBlogsServlet</servlet-name>
     <url-pattern>/AllBlogsServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WriteBlog</display-name>
+    <servlet-name>WriteBlog</servlet-name>
+    <servlet-class>Servlet.WriteBlog</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WriteBlog</servlet-name>
+    <url-pattern>/WriteBlog</url-pattern>
+  </servlet-mapping>
 </web-app>
