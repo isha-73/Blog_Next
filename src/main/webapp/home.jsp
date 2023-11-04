@@ -16,7 +16,6 @@
 
 	<!-- NAVBAR -->
 
-
 	<nav class="navbar">
 		<img src="img/blog_logo.png" class="logo" alt="">
 		<ul class="links-container">
