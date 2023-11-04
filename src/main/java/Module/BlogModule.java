@@ -16,26 +16,6 @@ public class BlogModule {
     public BlogModule(MongoDatabase db) {
         this.db = db;
     }
-    
-  
-//
-//    public void getAllBlogs() {
-//        try {
-//            MongoCollection<Document> collection = db.getCollection("blogs");
-//            FindIterable<Document> cursor = collection.find();
-//
-//            MongoCursor<Document> iterator = cursor.iterator();
-//            while (iterator.hasNext()) {
-//                Document blog = iterator.next();
-//                // send the json file to servlet
-//                System.out.println(blog.toJson());
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
 
     public boolean addBlog(BlogUtility blog) {
         boolean isblogAdded = false;
@@ -49,7 +29,7 @@ public class BlogModule {
             
             collection.insertOne(blogDoc);
             isblogAdded= true;
-            System.out.println("Blog added");
+            
             
         } catch (Exception e) {
             e.printStackTrace();
