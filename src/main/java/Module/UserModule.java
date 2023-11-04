@@ -3,7 +3,8 @@ package Module;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
-import Utility.User;
+
+import Utility.UserLogin;
 
 public class UserModule {
     MongoDatabase db;
@@ -11,23 +12,25 @@ public class UserModule {
     public UserModule(MongoDatabase db) {
         this.db = db;
     }
-
-    public boolean userRegister(User u) {
-        boolean isUserAdded = false;
+    
+    public boolean isUserRegistered(UserLogin user) {
+        boolean isUserExists = false;
 
         try {
             MongoCollection<Document> collection = db.getCollection("users");
-            Document userDocument = new Document("userName", u.getUserName())
-                    .append("password", u.getPassword())
-                    .append("email", u.getEmail());
-
-            collection.insertOne(userDocument);
-            isUserAdded = true;
-            System.out.println("Data added");
+            Document query = new Document("email", user.getEmail())
+                .append("password", user.getPassword());
+            
+            long count = collection.countDocuments(query);
+            if (count > 0) {
+                isUserExists = true;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return isUserAdded;
+        return isUserExists;
     }
+    
+    
 }
