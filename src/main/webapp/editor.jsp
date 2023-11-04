@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,23 +32,35 @@
         }
     </style>
 </head>
-<body>
-   
-
+<body><%
+    java.util.Date now = new java.util.Date();
+    String timestamp = now.toString();
+%>
+<form action="WriteBlog" method="post"> // multipart add karaych ahe 
     <div class="blog">
-        <form action="WriteBlog" method="post">
-        
-         <div class="banner">
-            <input type="file" name="bannerFile" accept="image/*">
-            <input type="submit" value="Upload Banner">
-        	<img src="<%= request.getAttribute("bannerImage") %>" alt="Uploaded Banner">
-    	</div>
-    	
-            <textarea type="text" class="title" name="title" placeholder="Blog title..." required></textarea>
-            <textarea type="text" class="article" name="description" placeholder="Start writing here..." rows="3" cols="50" required></textarea>
-            <input type="submit" value="Submit blog">
-            
-        </form>
+        <div class="banner">
+            <input type="file" name="bannerFile" accept="image/*" onchange="previewImage(event)">
+            <img id="uploadedImage" src="" alt="Uploaded Banner" style="width: 920px; height: 300px;">
+        </div>
+        <textarea type="text" class="title" name="title" placeholder="Blog title..." style="margin-top:10px" required></textarea>
+        <textarea type="text" class="article" name="description" placeholder="Start writing here..." rows="3" cols="50" required></textarea>
+        <input type="hidden" name="timeStamp" value="<%= timestamp %>">
+        <input type="submit" value="Submit blog">
     </div>
+</form>
+
+ 
+
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('uploadedImage');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
 </body>
 </html>

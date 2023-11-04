@@ -92,6 +92,19 @@ $(document).ready(function() {
                                 '<p>Written By: ' + blog['writtenBy'] + '</p>' + 
                                 '<a href="/" class="btn dark">read</a>' + 
                                 '</div>';
+                                
+                                
+                             // Add a click event handler to the entire blog card
+                                blogElement.addEventListener("click", function() {
+                                    // Get the title of the clicked blog
+                                    var clickedBlogTitle = blog['title'];
+
+                                    // Redirect to blog.jsp with the title as a query parameter
+                                    window.location.href = 'blog.jsp?title=' + encodeURIComponent(clickedBlogTitle);
+                                });
+
+                                                               
+                                                            
 
                             blogContainer.appendChild(blogElement);
                         }

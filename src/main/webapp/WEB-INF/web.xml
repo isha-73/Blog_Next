@@ -49,4 +49,14 @@
     <servlet-name>ImageServlet</servlet-name>
     <url-pattern>/ImageServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>OneBlog</display-name>
+    <servlet-name>OneBlog</servlet-name>
+    <servlet-class>Servlet.OneBlog</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OneBlog</servlet-name>
+    <url-pattern>/OneBlog</url-pattern>
+  </servlet-mapping>
 </web-app>

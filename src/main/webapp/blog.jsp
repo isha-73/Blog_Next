@@ -1,66 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog: Editor</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog :</title>
 
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/editor.css">
+<link rel="stylesheet" href="css/blog.css">
 
-    <style>
-        .blog form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
 
-        .blog form .title, .blog form .article {
-            margin-bottom: 10px;
-        }
-
-        .blog form input[type="submit"] {
-            padding: 10px 20px;
-            background-color: #000;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
-<body><%
-    java.util.Date now = new java.util.Date();
-    String timestamp = now.toString();
-%>
-<form action="WriteBlog" method="post">
-    <div class="blog">
-        <div class="banner">
-            <input type="file" name="bannerFile" accept="image/*" onchange="previewImage(event)">
-            <img id="uploadedImage" src="" alt="Uploaded Banner" style="width: 920px; height: 300px;">
+
+<body>
+
+    <div class="banner"></div>
+
+<div class="blog">
+
+    <img src="path_to_your_image.jpg" class="blog-image" alt="Your Image">
+    <h1 class="title"><%= request.getAttribute("title") %></h1>
+    <p class="writtenBy">Written by: <%= request.getAttribute("writtenBy") %></p>
+    <p class="timeStamp">Time Stamp: <%= request.getAttribute("timeStamp") %></p>
+    <p class="description"><%= request.getAttribute("description") %></p>
+
+    <div class="comments">
+        <div>
+            Enter the comment and the name of the user
         </div>
-        <textarea type="text" class="title" name="title" placeholder="Blog title..." style="margin-top:10px" required></textarea>
-        <textarea type="text" class="article" name="description" placeholder="Start writing here..." rows="3" cols="50" required></textarea>
-        <input type="hidden" name="timeStamp" value="<%= timestamp %>">
-        <input type="submit" value="Submit blog">
     </div>
-</form>
+</div>
 
- 
 
-<script>
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById('uploadedImage');
-            output.src = reader.result;
+
+    <!-- Floating window with buttons and counters -->
+    <div class="floating-window">
+        <div class="button" onclick="likePost()">Like</div>
+        <div class="likes">0</div>
+        <div class="button" onclick="scrollToComments()">Comment</div>
+        <div class="comments">0</div>
+        <div class="button" onclick="sharePost()">Share</div>
+        <div class="shares">0</div>
+    </div>
+
+    <script>
+        function likePost() {
+            // Add logic for like functionality
         }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script>
+
+        function scrollToComments() {
+            // Add logic to scroll to the comments section
+            var commentsSection = document.querySelector('.comments');
+            commentsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sharePost() {
+            // Add logic for sharing the post on platforms
+        }
+        
+        window.onscroll = function() {
+            var floatingWindow = document.getElementById('floating-window');
+            floatingWindow.style.top = (window.pageYOffset + window.innerHeight / 2) + 'px';
+        };
+    </script>
 
 </body>
 </html>

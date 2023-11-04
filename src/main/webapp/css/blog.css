@@ -1,1 +1,70 @@
+/* Add your custom CSS here */
+/* Include the provided CSS */
+.blog, .article {
+    position: relative;
+    height: fit-content;
+    padding-bottom: 0;
+}
 
+.article, .title {
+    min-height: auto;
+    height: fit-content;
+    padding: 0 10px;
+    white-space: normal;
+}
+
+.published {
+    margin: 20px 0 60px;
+    padding: 0 10px;
+    text-transform: capitalize;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.published span {
+    font-weight: 700;
+    font-style: normal;
+}
+
+.article * {
+    margin: 30px 0;
+    color: #2d2d2d;
+}
+
+.article-image {
+    max-width: 100%;
+    max-height: 400px;
+    display: block;
+    margin: 30px auto;
+    object-fit: contain;
+}
+
+/* Additional CSS for the floating window */
+.floating-window {
+    position: fixed;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #e2e2e2;
+}
+
+.likes,
+.comments,
+shares {
+    margin: 10px 0;
+    text-align: center;
+}
