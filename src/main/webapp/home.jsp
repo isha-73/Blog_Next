@@ -20,8 +20,9 @@
 	<nav class="navbar">
 		<img src="img/blog_logo.png" class="logo" alt="">
 		<ul class="links-container">
-			<li class="link-item"><a href="/" class="link">home</a></li>
-			<li class="link-item"><a href="/editor" class="link">editor</a></li>
+			<li class="link-item"><a href="home.jsp" class="link">Home</a></li>
+			<li class="link-item"><a href="editor.jsp" class="link">Write</a></li>
+			<li class="link-item"><a href="read.jsp" class="link">Read</a></li>
 		</ul>
 	</nav>
 
@@ -50,52 +51,66 @@
 </body>
 
 <script>
-    $(document).ready(function() {
-        function displayBlogData() {
-            $.ajax({
-                type: 'GET',
-                url: 'AllBlogsServlet',
-                dataType: 'json',
-                success: function(data) {
-                    // Log the received data to the console
-                    console.log(data.length);
-                    
-
-                    try {
-                        var jsonData = data;
-                        var blogContainer = document.getElementById("blogContainer");
-
-                        for (var i = 0; i < jsonData.length; i++) {
-                            var blog = jsonData[i];
-                            console.log(blog);
-
-                            var blogElement = document.createElement("div");
-                            blogElement.classList.add("blog-card"); // Adding the 'blog-card' class to the blog element
-
-                            blogElement.innerHTML =
-                                '<img src="img/header_img.jpg" class="blog-image" alt="">' +
-                                '<h1 class="blog-title">' + blog['title'] + '</h1>' +
-                                '<p class="blog-overview">' + blog['description'] + '</p>' +
-                                '<p class="blog-writtenBy">Written By: ' + blog['writtenBy'] + '</p>' +
-                                '<p class="blog-timestamp">Published on: ' + blog['timestamp'] + '</p>' +
-                                '<a href="/" class="btn dark">read</a>';
-
-                            blogContainer.appendChild(blogElement);
-                        }
-                    } catch (error) {
-                        console.log('Error parsing JSON data: ' + error);
-                    }
-
-
-                },
-                error: function() {
-                    console.log('Failed to retrieve data from the servlet.');
-                }
-            });
+$(document).ready(function() {
+    function truncateText(text, maxLength) {
+        if (text.length > maxLength) {
+            return text.slice(0, maxLength) + '.....';
+        } else {
+            return text;
         }
+    }
 
-        displayBlogData();
-    });
+    function displayBlogData() {
+        $.ajax({
+            type: 'GET',
+            url: 'AllBlogsServlet',
+            dataType: 'json',
+            success: function(data) {
+                try {
+                    var jsonData = data;
+                    
+                    jsonData.sort(function(a, b) {
+                        if (a['timestamp'] && b['timestamp']) {
+                            // Assuming 'timestamp' is in the format 'DD/MM/YYYY'
+                            const dateA = new Date(a['timestamp'].split('/').reverse().join('/'));
+                            const dateB = new Date(b['timestamp'].split('/').reverse().join('/'));
+                            return dateB - dateA;
+                        }
+                        return 0; 
+                    });
+                    
+                    
+                    var blogContainer = document.getElementById("blogContainer");
+
+                    for (var i = 0; i < jsonData.length; i++) {
+                        var blog = jsonData[i];
+
+                        var blogElement = document.createElement("div");
+                        blogElement.classList.add("blog-card");
+
+                        blogElement.innerHTML =
+                            '<img src="img/header_img.jpg" class="blog-image" alt="">' +
+                            '<h1 class="blog-title">' + blog['title'] + '</h1>' +
+                            '<p class="blog-overview">' + truncateText(blog['description'], 100) + '</p>' + 
+                            '<p class="blog-writtenBy">Written By: ' + blog['writtenBy'] + '</p>' +
+                            '<p class="blog-timestamp">Published on: ' + blog['timestamp'] + '</p>' +
+                            '<a href="/" class="btn dark">read</a>';
+
+                        blogContainer.appendChild(blogElement);
+                    }
+                } catch (error) {
+                    console.log('Error parsing JSON data: ' + error);
+                }
+            },
+            error: function() {
+                console.log('Failed to retrieve data from the servlet.');
+            }
+        });
+    }
+
+    displayBlogData();
+});
+
 </script>
 
 </html>
