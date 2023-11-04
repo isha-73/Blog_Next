@@ -11,7 +11,7 @@
 
 <body>
 	<div class="container">
-		<form action="User_Login" method="post">
+		<form action="Login" method="post">
 			<h1>Login Here</h1>
 			<label for="name" class="label">Email :</label><br> 
 			<input type="email" name="email"> <br>

@@ -58,6 +58,8 @@ public class Login extends HttpServlet {
                 request.setAttribute("error", "User not registered. Please sign up first.");
                 
                 /* Redirect to a sign up page */
+                response.sendRedirect("signup.jsp");
+                
             }
             
         } catch (Exception e) {
