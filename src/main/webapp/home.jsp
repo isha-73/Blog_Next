@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
 <!DOCTYPE html>
@@ -36,7 +38,7 @@
 				<span class="small">welcome in the world of</span> blog 
 				<span class="no-fill">writing</span>
 			</h1>
-			<a href="/editor" class="btn">write a blog</a>
+			<a href="editor.jsp" class="btn">write a blog</a>
 		</div>
 	</header>
 	
@@ -96,6 +98,18 @@ $(document).ready(function() {
                             '<p class="blog-timestamp">Published on: ' + blog['timeStamp'] + '</p>' +
                             '<a href="/" class="btn dark">read</a>';
 
+                            
+                        (function(blog) {
+                            blogElement.addEventListener("click", function(event) {
+                                // Get the title of the clicked blog associated with the clicked element
+                                var clickedBlogTitle = blog['title'];
+
+                                // Redirect to blog.jsp with the title as a query parameter
+                                window.location.href = 'blog.jsp?title=' + encodeURIComponent(clickedBlogTitle);
+                            });
+                        })(blog);
+                            
+                            
                         blogContainer.appendChild(blogElement);
                     }
                 } catch (error) {

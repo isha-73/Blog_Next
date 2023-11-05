@@ -40,7 +40,7 @@
     <div class="blog">
         <div class="banner">
             <input type="file" name="bannerFile" accept="image/*" onchange="previewImage(event)">
-            <img id="uploadedImage" src="" alt="Uploaded Banner" style="width: 920px; height: 300px;">
+            <img id="uploadedImage" src="" alt="Uploaded Banner" style="width: 682px; height: 280px;">
         </div>
         <textarea type="text" class="title" name="title" placeholder="Blog title..." style="margin-top:10px" required></textarea>
         <textarea type="text" class="article" name="description" placeholder="Start writing here..." rows="3" cols="50" required></textarea>

@@ -1,92 +1,177 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog :</title>
-
-<link rel="stylesheet" href="css/blog.css">
-
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 
 <body>
-	<!-- Display the blog title here -->
-	<div id="blogTitleDisplay"></div>
-	
-
-    <div class="banner"></div>
-
-<div class="blog">
-
-    <img src="path_to_your_image.jpg" class="blog-image" alt="Your Image">
-    <h1 class="title"><%= request.getAttribute("title") %></h1>
-    <p class="writtenBy">Written by: <%= request.getAttribute("writtenBy") %></p>
-    <p class="timeStamp">Time Stamp: <%= request.getAttribute("timeStamp") %></p>
-    <p class="description"><%= request.getAttribute("description") %></p>
-
-    <div class="comments">
-        <div>
-            Enter the comment and the name of the user
-        </div>
+    <div class="blog">
+            <img src="" class="blog-image" alt="Your Image">
+     
+        <h1 class="title"></h1>
+        <p class="writtenBy"></p>
+        <p class="timeStamp"></p>
+        <p class="description"></p>
     </div>
-</div>
-
-
 
     <!-- Floating window with buttons and counters -->
-    <div class="floating-window">
-        <div class="button" onclick="likePost()">Like</div>
-        <div class="likes">0</div>
-        <div class="button" onclick="scrollToComments()">Comment</div>
-        <div class="comments">0</div>
-        <div class="button" onclick="sharePost()">Share</div>
-        <div class="shares">0</div>
-    </div>
+    
+        <div class="placement">
+            <div class="like-button">
+                <div class="heart"></div>
+                <p class="likes"></p>
+            </div>
+        </div>
+        
+        <div class="share-comment-container">
+            <img src="img/comment_img.png" class="comment-image" alt="Comment">
+            <p class="comments"></p>
+            <img src="img/share_img.png" class="share-image" alt="Share">
+        </div>
+               
+        <p class="shares"></p>
+ 
 
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const titlee = urlParams.get('title');
+
+        // JavaScript code for liking the blog
+        $(function () {
+            $(".like-button").on("click", function () {
+                $(this).find(".heart").toggleClass("is-active");
+                likePost(); // Call the likePost function when the like button is clicked
+            });
+        });
+
+        $(".comment-image").on("click", function () {
+            scrollToComments();
+        });
+
+        $(".share-image").on("click", function () {
+            sharePost();
+        });
+
         function likePost() {
-            // Add logic for like functionality
+            $.ajax({
+                type: 'POST',
+                url: 'LikeBlogServlet',
+                data: {
+                    title: titlee
+                },
+                success: function (data) {
+                    try {
+                        console.log("Blog liked");
+                        // Update the likes count on the frontend
+                        var likesElement = document.querySelector('.likes');
+                        var currentLikes = parseInt(likesElement.textContent.split(":")[1]);
+                        likesElement.textContent = "Likes: " + (currentLikes + 1);
+                    } catch (error) {
+                        console.log('Error incrementing likes count: ' + error);
+                    }
+                },
+                error: function () {
+                    console.log('Failed to like the blog. Please try again.');
+                }
+            });
         }
 
         function scrollToComments() {
-            // Add logic to scroll to the comments section
-            var commentsSection = document.querySelector('.comments');
-            commentsSection.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function sharePost() {
-            // Add logic for sharing the post on platforms
-        }
-        
-        window.onscroll = function() {
-            var floatingWindow = document.getElementById('floating-window');
-            floatingWindow.style.top = (window.pageYOffset + window.innerHeight / 2) + 'px';
-        };
-        
-        
-        document.addEventListener("DOMContentLoaded", function() {
-            // Get the query parameter "title" from the URL
-            var queryString = window.location.search;
-            var urlParams = new URLSearchParams(queryString);
-            var blogTitle = urlParams.get("title");
-
-            if (blogTitle) {
-                // Display the blog title on the page, for example, in a div with an id "blogTitleDisplay"
-                var blogTitleDisplay = document.getElementById("blogTitleDisplay");
-                blogTitleDisplay.textContent = "Title: " + blogTitle;
-            } else {
-                // Handle the case where the "title" query parameter is missing or empty
+            var commentInput = prompt("Enter your comment:");
+            if (commentInput) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'CommentBlogServlet',
+                    data: {
+                        title: titlee,
+                        comment: commentInput
+                    },
+                    success: function (data) {
+                        try {
+                            console.log("Comment added successfully");
+                            // Update the comments count on the frontend
+                            var commentsElement = document.querySelector('.comments');
+                            var currentComments = parseInt(commentsElement.textContent.split(":")[1]);
+                            commentsElement.textContent = "Comments: " + (currentComments + 1);
+                        } catch (error) {
+                            console.log('Error adding the comment: ' + error);
+                        }
+                    },
+                    error: function () {
+                        console.log('Failed to add the comment. Please try again.');
+                    }
+                });
             }
-        });
+        }
+        
+        function sharePost() {
+      	  if (navigator.share) {
+      	    // Use the Web Share API to share the page
+      	    navigator
+      	      .share({
+      	        title: 'Blog Title', // Replace with your blog title
+      	        text: 'Check out this blog post:', // Replace with your message
+      	        url: window.location.href,
+      	      })
+      	      .then(() => {
+      	        console.log('Shared successfully.');
+      	      })
+      	      .catch((error) => {
+      	        console.error('Error sharing:', error);
+      	      });
+      	  } else {
+      	    // Fallback: Show a custom sharing dialog
+      	    const shareDialog = document.querySelector('.share-dialog');
+      	    shareDialog.classList.add('is-open');
+      	  }
+      	}
 
-        
-        
+        function displayBlogData() {
+            $.ajax({
+                type: 'GET',
+                url: 'OneBlogServlet',
+                data: {
+                    title: titlee
+                },
+                dataType: 'json',
+                success: function (data) {
+                    try {
+                        if (data[0] && data[0].comments) {
+                            var currentComments = data[0].comments.length;
+                            // Update the comments count on the frontend
+                            document.querySelector('.comments').textContent = "Comments: " + currentComments;
+                        } else {
+                            console.log('No comments data found in JSON response.');
+                        }
+                        
+                        // Update the HTML elements with the retrieved data
+                        // Update the HTML elements with the retrieved data
+						const imgElement = document.querySelector('.blog-image');
+						imgElement.src = 'ImageServlet?blogTitle=' + encodeURIComponent(data[0].title);
+
+                        document.querySelector('.title').textContent = data[0].title;
+                        document.querySelector('.writtenBy').textContent = "Written By: " + data[0].writtenBy;
+                        document.querySelector('.timeStamp').textContent = "Published on: " + data[0].timeStamp;
+                        document.querySelector('.description').textContent = data[0].description;
+                        document.querySelector('.likes').textContent = "" + data[0].likes;
+                        // ... Update other elements as needed
+                    } catch (error) {
+                        console.log('Error parsing JSON data: ' + error);
+                    }
+                },
+                error: function () {
+                    console.log('Failed to retrieve data from the servlet.');
+                }
+            });
+        }
+
+        displayBlogData();
     </script>
-
 </body>
 </html>
