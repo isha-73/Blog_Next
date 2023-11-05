@@ -45,6 +45,7 @@ body {
 }
 
 .links-container{
+	align-items: center;
     display: flex;
     list-style: none;
 }
@@ -55,8 +56,27 @@ body {
     text-decoration: none;
     text-transform: capitalize;
     color: #000;
-    -webkit-text-stroke-width: thin;
 }
+
+
+.login-button {
+		margin-left:10px;
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #35A29F;
+        color: #fff; 
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s ease; 
+    	box-shadow: 0px 8px 12px rgba(0, 0, 0.1, 0.09);
+    }
+
+.login-button:hover {
+        background-color: #0B666A; 
+        transform: translateY(-2px);
+    	box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+   }
 
 
 /* General Styles */

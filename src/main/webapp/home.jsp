@@ -22,6 +22,7 @@
 			<li class="link-item"><a href="home.jsp" class="link">Home</a></li>
 			<li class="link-item"><a href="editor.jsp" class="link">Write</a></li>
 			<li class="link-item"><a href="read.jsp" class="link">Read</a></li>
+			<li class="link-item"><a href="login.jsp" class="login-button">Login</a></li>
 		</ul>
 	</nav>
 
@@ -69,10 +70,10 @@ $(document).ready(function() {
                     var jsonData = data;
                     
                     jsonData.sort(function(a, b) {
-                        if (a['timestamp'] && b['timestamp']) {
+                        if (a['timeStamp'] && b['timeStamp']) {
                             // Assuming 'timestamp' is in the format 'DD/MM/YYYY'
-                            const dateA = new Date(a['timestamp'].split('/').reverse().join('/'));
-                            const dateB = new Date(b['timestamp'].split('/').reverse().join('/'));
+                            const dateA = new Date(a['timeStamp'].split('/').reverse().join('/'));
+                            const dateB = new Date(b['timeStamp'].split('/').reverse().join('/'));
                             return dateB - dateA;
                         }
                         return 0; 
@@ -88,11 +89,11 @@ $(document).ready(function() {
                         blogElement.classList.add("blog-card");
 
                         blogElement.innerHTML =
-                            '<img src="img/header_img.jpg" class="blog-image" alt="">' +
+                        	'<img src="ImageServlet?blogTitle=' + encodeURIComponent(blog.title) + '" class="blog-image" alt="Blog Image">' +
                             '<h1 class="blog-title">' + blog['title'] + '</h1>' +
                             '<p class="blog-overview">' + truncateText(blog['description'], 100) + '</p>' + 
                             '<p class="blog-writtenBy">Written By: ' + blog['writtenBy'] + '</p>' +
-                            '<p class="blog-timestamp">Published on: ' + blog['timestamp'] + '</p>' +
+                            '<p class="blog-timestamp">Published on: ' + blog['timeStamp'] + '</p>' +
                             '<a href="/" class="btn dark">read</a>';
 
                         blogContainer.appendChild(blogElement);

@@ -10,20 +10,20 @@
 </head>
 <body>
 	<nav class="navbar">
- 		<img src="img/blog_logo.png" class="logo" alt="">
-
+		<img src="img/blog_logo.png" class="logo" alt="">
 		<ul class="links-container">
-			<li class="link-item"><a href="home.jsp" class="link">home</a></li>
+			<li class="link-item"><a href="home.jsp" class="link">Home</a></li>
 			<li class="link-item"><a href="editor.jsp" class="link">Write</a></li>
 			<li class="link-item"><a href="read.jsp" class="link">Read</a></li>
+			<li class="link-item"><a href="login.jsp" class="login-button">Login</a></li>
 		</ul>
 	</nav>
 	
 	<section class="blog" id="blog">
 		<div class="container">
 			<div class="title">
-				<h2>Latest Blog</h2>
-				<p>recent blogs about art & design</p>
+				<h2>Blogs</h2>
+				<p>Popular blogs for you</p>
 			</div>
 			<div class="blog-content" id="all_blog_container">
 				
@@ -94,17 +94,16 @@ $(document).ready(function() {
                                 '</div>';
                                 
                                 
-                             // Add a click event handler to the entire blog card
-                                blogElement.addEventListener("click", function() {
-                                    // Get the title of the clicked blog
+                            (function(blog) {
+                                blogElement.addEventListener("click", function(event) {
+                                    // Get the title of the clicked blog associated with the clicked element
                                     var clickedBlogTitle = blog['title'];
 
                                     // Redirect to blog.jsp with the title as a query parameter
                                     window.location.href = 'blog.jsp?title=' + encodeURIComponent(clickedBlogTitle);
                                 });
-
-                                                               
-                                                            
+                            })(blog);
+                             
 
                             blogContainer.appendChild(blogElement);
                         }

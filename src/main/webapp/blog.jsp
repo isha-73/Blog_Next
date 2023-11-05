@@ -15,6 +15,9 @@
 </head>
 
 <body>
+	<!-- Display the blog title here -->
+	<div id="blogTitleDisplay"></div>
+	
 
     <div class="banner"></div>
 
@@ -64,6 +67,25 @@
             var floatingWindow = document.getElementById('floating-window');
             floatingWindow.style.top = (window.pageYOffset + window.innerHeight / 2) + 'px';
         };
+        
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the query parameter "title" from the URL
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var blogTitle = urlParams.get("title");
+
+            if (blogTitle) {
+                // Display the blog title on the page, for example, in a div with an id "blogTitleDisplay"
+                var blogTitleDisplay = document.getElementById("blogTitleDisplay");
+                blogTitleDisplay.textContent = "Title: " + blogTitle;
+            } else {
+                // Handle the case where the "title" query parameter is missing or empty
+            }
+        });
+
+        
+        
     </script>
 
 </body>

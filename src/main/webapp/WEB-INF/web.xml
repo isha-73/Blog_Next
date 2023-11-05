@@ -59,4 +59,34 @@
     <servlet-name>OneBlog</servlet-name>
     <url-pattern>/OneBlog</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LikeBlogServlet</display-name>
+    <servlet-name>LikeBlogServlet</servlet-name>
+    <servlet-class>Servlet.LikeBlogServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LikeBlogServlet</servlet-name>
+    <url-pattern>/LikeBlogServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CommentBlogServlet</display-name>
+    <servlet-name>CommentBlogServlet</servlet-name>
+    <servlet-class>Servlet.CommentBlogServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommentBlogServlet</servlet-name>
+    <url-pattern>/CommentBlogServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>OneBlogServlet</display-name>
+    <servlet-name>OneBlogServlet</servlet-name>
+    <servlet-class>Servlet.OneBlogServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OneBlogServlet</servlet-name>
+    <url-pattern>/OneBlogServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

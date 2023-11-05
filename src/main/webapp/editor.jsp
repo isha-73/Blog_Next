@@ -36,7 +36,7 @@
     java.util.Date now = new java.util.Date();
     String timestamp = now.toString();
 %>
-<form action="WriteBlog" method="post"> // multipart add karaych ahe 
+<form action="WriteBlog" method="post" enctype="multipart/form-data"> 
     <div class="blog">
         <div class="banner">
             <input type="file" name="bannerFile" accept="image/*" onchange="previewImage(event)">
