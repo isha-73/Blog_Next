@@ -1,6 +1,8 @@
 package Utility;
 import java.util.*;
 
+import org.bson.types.Binary;
+
 public class BlogUtility {
 	
    private String writtenBy;
@@ -10,13 +12,13 @@ public class BlogUtility {
    private int likes;
    private ArrayList<String> comments = new ArrayList<>();
    private int commentCount;
-   private String urlImg;
+   private Binary urlImg;
    
    
-public String getUrlImg() {
+public Binary getUrlImg() {
 	return urlImg;
 }
-public void setUrlImg(String urlImg) {
+public void setUrlImg(Binary urlImg) {
 	this.urlImg = urlImg;
 }
 public String getWrittenBy() {

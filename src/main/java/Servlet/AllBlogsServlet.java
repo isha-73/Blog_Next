@@ -16,6 +16,11 @@ import DBConnect.DBConnection;
 
 import com.mongodb.client.FindIterable;
 
+import org.bson.Document;
+import org.bson.types.Binary;
+import java.util.Base64;
+
+
 public class AllBlogsServlet extends HttpServlet {
 
     @Override

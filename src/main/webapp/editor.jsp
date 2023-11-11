@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog: Editor</title>
 
-    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/editor.css">
 
     <style>
@@ -45,7 +44,7 @@
         <textarea type="text" class="title" name="title" placeholder="Blog title..." style="margin-top:10px" required></textarea>
         <textarea type="text" class="article" name="description" placeholder="Start writing here..." rows="3" cols="50" required></textarea>
         <input type="hidden" name="timeStamp" value="<%= timestamp %>">
-        <input type="submit" value="Submit blog">
+        <input type="submit" calss="submit_button" value="Submit blog">
     </div>
 </form>
 
