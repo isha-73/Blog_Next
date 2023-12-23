@@ -17,3 +17,9 @@ Server - Apache Tomcat
 ● Blog Post Management: Users can create and view blog posts.  
 ● Blog features: Users can like and share the blog  
 ● Comment System: Users can comment on blog posts, fostering interaction and engagement.
+
+### Screenshots and Synopsis:  
+Link: https://github.com/shruti-2412/Blog-Next/blob/main/JFST_MiniProject.pdf  
+
+### Video Demo link:  
+https://www.loom.com/share/2c4663d9a7a74df4b5b1a600018e3177?sid=84e0734d-8bbf-454b-a2c2-1bc658216e4f
